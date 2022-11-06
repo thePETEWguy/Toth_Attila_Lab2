@@ -47,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.PublishingDate)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Book[0].Publisher.PublisherName)
+                @Html.DisplayFor(model => item.Publisher.PublisherName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
