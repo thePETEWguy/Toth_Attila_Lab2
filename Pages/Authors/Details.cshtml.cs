@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Toth_Attila_Lab2.Data;
 using Toth_Attila_Lab2.Models;
 
-namespace Toth_Attila_Lab2.Pages.Books
+namespace Toth_Attila_Lab2.Pages.Authors
 {
     public class DetailsModel : PageModel
     {
@@ -19,25 +19,23 @@ namespace Toth_Attila_Lab2.Pages.Books
             _context = context;
         }
 
-      public Book Book { get; set; }
+      public Author Author { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Book == null)
+            if (id == null || _context.Author == null)
             {
                 return NotFound();
             }
 
-            Book? book = await _context.Book.Include(b => b.Publisher)
-                                            .Include(b => b.Author)
-                                            .FirstOrDefaultAsync(m => m.ID == id);
-            if (book == null)
+            var author = await _context.Author.FirstOrDefaultAsync(m => m.ID == id);
+            if (author == null)
             {
                 return NotFound();
             }
             else 
             {
-                Book = book;
+                Author = author;
             }
             return Page();
         }
